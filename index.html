@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz cumpleaños, Dayana 💗</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #72264d;
+    background: linear-gradient(135deg, #ffe0ed, #f2d5ff, #ffdce7);
+    text-align: center;
+}
+
+.pantalla {
+    min-height: 100vh;
+    padding: 35px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.oculto {
+    display: none !important;
+}
+
+h1 {
+    font-size: clamp(28px, 7vw, 48px);
+    margin: 15px 0;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* PANTALLA INICIAL */
+
+.regalo {
+    font-size: 100px;
+    animation: flotar 2s ease-in-out infinite;
+}
+
+.boton {
+    border: none;
+    border-radius: 35px;
+    padding: 15px 25px;
+    margin: 20px 0;
+    background: #e84383;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #b94c7c55;
+    transition: transform 0.25s, background 0.25s;
+}
+
+.boton:hover {
+    background: #c52e70;
+    transform: scale(1.06);
+}
+
+.boton:active {
+    transform: scale(0.95);
+}
+
+/* PANTALLA DE CUMPLEAÑOS */
+
+#recuerdos {
+    position: relative;
+}
+
+.titulo-cumple {
+    font-size: clamp(38px, 9vw, 70px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: #e52e78;
+    text-shadow: 0 4px 15px #ff8bb755;
+    animation: tituloEntrada 1s ease both;
+}
+
+.mensaje-cumple {
+    max-width: 520px;
+}
+
+.corazones-decoracion {
+    font-size: 27px;
+    animation: latido 1.5s infinite;
+}
+
+/* NUMERO 19 ANIMADO ARRIBA A LA DERECHA */
+
+.edad-19 {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e52e78;
+    pointer-events: none;
+    animation: entradaEdad 1.2s ease-out both;
+}
+
+.numero-edad {
+    font-size: 65px;
+    font-weight: 900;
+    line-height: 1;
+    color: #e52e78;
+    text-shadow: 0 0 15px #ff8fbd;
+    animation: latidoEdad 2s ease-in-out infinite;
+}
+
+.texto-edad {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.brillito {
+    font-size: 20px;
+    animation: brilloEdad 1.5s ease-in-out infinite alternate;
+}
+
+/* CUATRO FOTOGRAFIAS POLAROID */
+
+.fotos {
+    width: 100%;
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin: 25px auto;
+}
+
+/* TARJETA FIJA */
+
+.polaroid {
+    min-width: 0;
+    padding: 9px 9px 15px;
+    position: relative;
+    isolation: isolate;
+    background: transparent;
+}
+
+/* SOLO EL MARCO BLANCO SE MUEVE */
+
+.polaroid::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0 5px 18px #70204430;
+    transform-origin: center center;
+    animation: moverMarco 3s ease-in-out infinite;
+}
+
+/* MOVIMIENTO DIFERENTE PARA CADA MARCO */
+
+.polaroid:nth-child(1)::before {
+    animation-delay: 0s;
+}
+
+.polaroid:nth-child(2)::before {
+    animation-delay: -0.7s;
+}
+
+.polaroid:nth-child(3)::before {
+    animation-delay: -1.4s;
+}
+
+.polaroid:nth-child(4)::before {
+    animation-delay: -2.1s;
+}
+
+/* FOTOGRAFIAS COMPLETAMENTE QUIETAS */
+
+.foto-movimiento,
+.foto,
+.foto img {
+    animation: none;
+    transform: none;
+}
+
+.foto {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffd0e1, #d8b5ff);
+    color: #9a4773;
+    font-size: 35px;
+}
+
+.foto img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.polaroid p {
+    margin: 10px 0 0;
+    font-size: 13px;
+}
+
+/* CARTA */
+
+.carta {
+    width: 100%;
+    max-width: 600px;
+    padding: 25px;
+    background: #fffafd;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px #70204425;
+    text-align: left;
+    animation: aparecer 0.8s ease both;
+}
+
+.carta h2 {
+    text-align: center;
+    color: #e84383;
+}
+
+.carta p {
+    font-size: 16px;
+}
+
+.corazon {
+    font-size: 42px;
+    animation: latido 1.2s ease-in-out infinite;
+}
+
+/* CORAZONES FLOTANTES */
+
+.corazones {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.corazon-flotante {
+    position: absolute;
+    bottom: -50px;
+    font-size: 25px;
+    animation: subir 4s linear forwards;
+}
+
+/* ANIMACIONES */
+
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+    }
+    50% {
+        transform: translateY(-14px) rotate(4deg);
+    }
+}
+
+@keyframes tituloEntrada {
+    from {
+        opacity: 0;
+        transform: scale(0.65) translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* EL MARCO BLANCO SE INCLINA Y SE MUEVE */
+
+@keyframes moverMarco {
+    0%, 100% {
+        transform: translateX(-5px) rotate(-3deg);
+        box-shadow: 0 5px 18px #70204430;
+    }
+
+    50% {
+        transform: translateX(5px) rotate(3deg);
+        box-shadow:
+            0 8px 25px #ff69b480,
+            0 0 12px #ffb6d9;
+    }
+}
+
+/* ENTRADA DEL NUMERO 19 */
+
+@keyframes entradaEdad {
+    from {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* LATIDO DEL NUMERO 19 */
+
+@keyframes latidoEdad {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+/* BRILLITOS DEL NUMERO 19 */
+
+@keyframes brilloEdad {
+    from {
+        opacity: 0.4;
+        transform: scale(0.8) rotate(-15deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2) rotate(15deg);
+    }
+}
+
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+@keyframes subir {
+    0% {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(25deg);
+        opacity: 0;
+    }
+}
+
+/* DISEÑO PARA COMPUTADORAS */
+
+@media (min-width: 650px) {
+    .fotos {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* DISEÑO PARA CELULARES */
+
+@media (max-width: 600px) {
+    .edad-19 {
+        top: 12px;
+        right: 12px;
+    }
+
+    .numero-edad {
+        font-size: 42px;
+    }
+
+    .texto-edad {
+        font-size: 10px;
+    }
+
+    #recuerdos {
+        padding-top: 105px;
+    }
+
+    @keyframes moverMarco {
+        0%, 100% {
+            transform: translateX(-3px) rotate(-2deg);
+            box-shadow: 0 5px 18px #70204430;
+        }
+
+        50% {
+            transform: translateX(3px) rotate(2deg);
+            box-shadow: 0 8px 20px #ff69b480;
+        }
+    }
+}
+
+@media (max-width: 380px) {
+    .fotos {
+        gap: 10px;
+    }
+
+    .polaroid {
+        padding: 6px 6px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="efectoCorazones" class="corazones"></div>
+
+<!-- PANTALLA INICIAL -->
+
+<section id="inicio" class="pantalla">
+
+    <div class="regalo">🎁</div>
+
+    <h1>Una sorpresa para ti 💗</h1>
+
+    <p>
+        Para una persona muy especial en mi vida:
+        mi mejor amiga.
+    </p>
+
+    <button id="abrirRegalo" class="boton" type="button">
+        Abrir mi regalo 💝
+    </button>
+
+</section>
+
+<!-- PANTALLA DE CUMPLEAÑOS Y FOTOS -->
+
+<section id="recuerdos" class="pantalla oculto">
+
+    <!-- NUMERO 19 ANIMADO ARRIBA A LA DERECHA -->
+
+    <div class="edad-19">
+        <span class="brillito">✨</span>
+        <span class="numero-edad">19</span>
+        <span class="brillito">✨</span>
+        <span class="texto-edad">AÑOS</span>
+    </div>
+
+    <div class="corazones-decoracion">
+        💗 ✨ 💖 ✨ 💗
+    </div>
+
+    <h1 class="titulo-cumple">
+        ¡Feliz cumpleaños,<br>
+        mi Dayana! 🎂
+    </h1>
+
+    <p class="mensaje-cumple">
+        Hoy es un día muy especial porque celebramos tu vida.
+        Gracias por ser una amiga tan especial. 💕
+    </p>
+
+    <div class="fotos">
+
+        <!-- FOTO 1 -->
+        <div class="polaroid">
+            <div class="foto-movimiento">
+                <div class="foto">
+                    <img src="img/imagen 1.jpeg"
+                         alt="Foto de Dayana 1">
+                </div>
+                <p>Una personita especial 💗</p>
+            </div>
+        </div>
+
+        <!-- FOTO 2 -->
+        <div class="polaroid">
+            <div class="foto-movimiento">
+                <div class="foto">
+                    <img src="img/imagen 2.jpeg"
+                         alt="Foto de Dayana 2">
+                </div>
+                <p>Momentos bonitos ✨</p>
+            </div>
+        </div>
+
+        <!-- FOTO 3 -->
+        <div class="polaroid">
+            <div class="foto-movimiento">
+                <div class="foto">
+                    <img src="img/imagen 3.jpeg"
+                         alt="Foto de Dayana 3">
+                </div>
+                <p>Mi mejor amiga 💕</p>
+            </div>
+        </div>
+
+        <!-- FOTO 4 -->
+        <div class="polaroid">
+            <div class="foto-movimiento">
+                <div class="foto">
+                    <img src="img/imagen 4.jpeg"
+                         alt="Foto de Dayana 4">
+                </div>
+                <p>Un recuerdo especial 🌷</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="verCarta" class="boton" type="button">
+        Tengo algo más para ti 💌
+    </button>
+
+</section>
+
+<!-- PANTALLA DE LA CARTA -->
+
+<section id="carta" class="pantalla oculto">
+
+    <div class="carta">
+
+        <h2>Para mi querida Dayana 💌</h2>
+
+        <p>¡Feliz cumpleaños, mi Dayana! 🎂💗</p>
+
+        <p>
+            Hoy quiero desearte un día lleno de alegría,
+            sonrisas y momentos inolvidables.
+        </p>
+
+        <p>
+            Gracias por tu amistad, por los momentos compartidos
+            y por ser esa amiga especial que merece todo lo bonito
+            de este mundo.
+        </p>
+
+        <p>
+            Deseo que cumplas tus sueños, que nunca te falten
+            motivos para sonreír y que la vida te regale muchas
+            experiencias hermosas.
+        </p>
+
+        <p>
+            Nunca olvides lo importante que eres y lo mucho
+            que vale tu amistad.
+        </p>
+
+        <p style="text-align:center">
+            Con mucho cariño, para mi mejor amiga. 💖
+        </p>
+
+    </div>
+
+    <div class="corazon">❤️</div>
+
+    <button id="volverInicio" class="boton" type="button">
+        Volver al inicio ↩️
+    </button>
+
+</section>
+
+<script>
+(function () {
+    "use strict";
+
+    function iniciarPagina() {
+
+        const inicio = document.getElementById("inicio");
+        const recuerdos = document.getElementById("recuerdos");
+        const carta = document.getElementById("carta");
+
+        const abrirRegalo = document.getElementById("abrirRegalo");
+        const verCarta = document.getElementById("verCarta");
+        const volverInicio = document.getElementById("volverInicio");
+
+        const efectoCorazones =
+            document.getElementById("efectoCorazones");
+
+        if (
+            !inicio || !recuerdos || !carta ||
+            !abrirRegalo || !verCarta || !volverInicio ||
+            !efectoCorazones
+        ) {
+            console.error("No se encontraron los elementos necesarios.");
+            return;
+        }
+
+        function mostrarPantalla(pantalla) {
+
+            [inicio, recuerdos, carta].forEach(function (elemento) {
+                elemento.classList.add("oculto");
+            });
+
+            pantalla.classList.remove("oculto");
+            window.scrollTo(0, 0);
+        }
+
+        function lanzarCorazones() {
+
+            const simbolos = ["💗", "💖", "💕", "❤️", "💝"];
+
+            for (let i = 0; i < 18; i++) {
+
+                const corazon = document.createElement("span");
+
+                corazon.className = "corazon-flotante";
+
+                corazon.textContent =
+                    simbolos[Math.floor(Math.random() * simbolos.length)];
+
+                corazon.style.left = Math.random() * 100 + "%";
+
+                corazon.style.animationDelay =
+                    Math.random() * 1.5 + "s";
+
+                efectoCorazones.appendChild(corazon);
+
+                corazon.addEventListener("animationend", function () {
+                    corazon.remove();
+                });
+            }
+        }
+
+        abrirRegalo.addEventListener("click", function () {
+            mostrarPantalla(recuerdos);
+            lanzarCorazones();
+        });
+
+        verCarta.addEventListener("click", function () {
+            mostrarPantalla(carta);
+            lanzarCorazones();
+        });
+
+        volverInicio.addEventListener("click", function () {
+            mostrarPantalla(inicio);
+        });
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", iniciarPagina);
+    } else {
+        iniciarPagina();
+    }
+})();
+</script>
+
+</body>
+</html>
